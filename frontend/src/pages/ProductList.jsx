@@ -2,11 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import StarRating from '../components/StarRating';
-
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -20,9 +18,7 @@ const ProductList = () => {
     };
     fetchProducts();
   }, []);
-
   if (loading) return <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)' }}>Loading products...</div>;
-
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
@@ -57,5 +53,4 @@ const ProductList = () => {
     </div>
   );
 };
-
 export default ProductList;

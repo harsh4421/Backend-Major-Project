@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Product = require('./models/Product');
 const connectDB = require('./config/db');
-
-// Load env vars
 dotenv.config();
-
 const products = [
   {
     name: 'Apple iPhone 18 Pro Max',
@@ -98,14 +95,11 @@ const products = [
     imageUrl: 'https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?auto=format&fit=crop&w=800&q=80'
   }
 ];
-
-// Import data
 const importData = async () => {
   try {
     await connectDB();
     await Product.deleteMany();
     console.log('Old products cleared.');
-    
     await Product.insertMany(products);
     console.log('Sample Products Imported Successfully!');
     process.exit();
@@ -114,5 +108,4 @@ const importData = async () => {
     process.exit(1);
   }
 };
-
 importData();

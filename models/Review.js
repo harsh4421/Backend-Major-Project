@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const ReviewSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -32,11 +31,7 @@ const ReviewSchema = new mongoose.Schema({
     required: true
   }
 });
-
-// Prevent user from submitting more than one review per product
 ReviewSchema.index({ product: 1, user: 1 }, { unique: true });
-
-// Static method to get avg rating and save
 ReviewSchema.statics.getAverageRating = async function(productId) {
   const obj = await this.aggregate([
     {
@@ -49,7 +44,6 @@ ReviewSchema.statics.getAverageRating = async function(productId) {
       }
     }
   ]);
-
   try {
     if (obj[0]) {
       await this.model('Product').findByIdAndUpdate(productId, {
@@ -64,17 +58,12 @@ ReviewSchema.statics.getAverageRating = async function(productId) {
     console.error(err);
   }
 };
-
-// Call getAverageRating after save
 ReviewSchema.post('save', async function() {
   await this.constructor.getAverageRating(this.product);
 });
-
-// Call getAverageRating after delete
 ReviewSchema.post('findOneAndDelete', async function(doc) {
   if (doc) {
     await doc.constructor.getAverageRating(doc.product);
   }
 });
-
 module.exports = mongoose.model('Review', ReviewSchema);

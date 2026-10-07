@@ -5,11 +5,9 @@ import ProductList from './pages/ProductList';
 import ProductDetails from './pages/ProductDetails';
 import Login from './pages/Login';
 import Register from './pages/Register';
-
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [user, setUser] = useState(null);
-
   useEffect(() => {
     if (token) {
       localStorage.setItem('token', token);
@@ -19,7 +17,6 @@ function App() {
       setUser(null);
     }
   }, [token]);
-
   const fetchUser = async () => {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/auth/me`, {
@@ -38,11 +35,9 @@ function App() {
       setToken(null);
     }
   };
-
   const logout = () => {
     setToken(null);
   };
-
   return (
     <Router>
       <Navbar user={user} logout={logout} />
@@ -57,5 +52,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

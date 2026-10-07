@@ -7,27 +7,20 @@ const {
   deleteReview,
   getAverageRating
 } = require('../controllers/reviewController');
-
 const { protect } = require('../middleware/auth');
-
 const router = express.Router({ mergeParams: true });
-
-// Check if it's the average-rating route
 router.get('/', (req, res, next) => {
   if (req.originalUrl.includes('average-rating')) {
     return getAverageRating(req, res, next);
   }
   return getReviews(req, res, next);
 });
-
 router
   .route('/')
   .post(protect, addReview);
-
 router
   .route('/:id')
   .get(getReview)
   .put(protect, updateReview)
   .delete(protect, deleteReview);
-
 module.exports = router;

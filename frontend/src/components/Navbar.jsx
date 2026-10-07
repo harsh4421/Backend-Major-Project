@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { ShoppingBag, LogOut, User as UserIcon } from 'lucide-react';
-
 const Navbar = ({ user, logout }) => {
   return (
     <nav className="navbar">
@@ -31,5 +30,4 @@ const Navbar = ({ user, logout }) => {
     </nav>
   );
 };
-
 export default Navbar;

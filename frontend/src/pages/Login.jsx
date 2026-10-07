@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
 const Login = ({ setToken }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -19,7 +17,6 @@ const Login = ({ setToken }) => {
       setError(err.response?.data?.error || 'Login failed');
     }
   };
-
   return (
     <div className="auth-container">
       <h2 style={{ marginBottom: '1.5rem', textAlign: 'center', fontSize: '1.5rem' }}>Sign In</h2>
@@ -55,5 +52,4 @@ const Login = ({ setToken }) => {
     </div>
   );
 };
-
 export default Login;

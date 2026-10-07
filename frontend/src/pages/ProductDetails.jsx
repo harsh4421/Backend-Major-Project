@@ -3,16 +3,13 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import StarRating from '../components/StarRating';
 import ReviewForm from '../components/ReviewForm';
-
 const ProductDetails = ({ user, token }) => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     fetchProduct();
   }, [id]);
-
   const fetchProduct = async () => {
     try {
       const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products/${id}`);
@@ -23,27 +20,21 @@ const ProductDetails = ({ user, token }) => {
       setLoading(false);
     }
   };
-
   const handleReviewAdded = () => {
     fetchProduct();
   };
-
   if (loading) return <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)' }}>Loading product details...</div>;
   if (!product) return <div style={{ textAlign: 'center', marginTop: '3rem' }}>Product not found</div>;
-
   const hasReviewed = user && product.reviews && product.reviews.some(r => r.user === user._id);
-
   return (
     <div style={{ paddingBottom: '4rem' }}>
       <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none', display: 'inline-block', marginBottom: '2rem', fontSize: '0.9rem' }}>
         &larr; Back to Products
       </Link>
-      
       <div className="panel" style={{ padding: '3rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'start', border: 'none', boxShadow: 'none', background: 'transparent' }}>
         <div style={{ width: '100%', height: '400px', backgroundColor: '#f1f5f9', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
           <img src={product.imageUrl} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
-        
         <div style={{ paddingTop: '1rem' }}>
           <h1 style={{ marginBottom: '1rem', fontSize: '2rem' }}>{product.name}</h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
@@ -60,10 +51,8 @@ const ProductDetails = ({ user, token }) => {
           </button>
         </div>
       </div>
-
       <div style={{ marginTop: '4rem', maxWidth: '800px', margin: '4rem auto 0 auto' }}>
         <h3 style={{ marginBottom: '2rem', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>Customer Reviews</h3>
-        
         {user ? (
           !hasReviewed ? (
              <ReviewForm productId={product._id} token={token} onReviewAdded={handleReviewAdded} />
@@ -78,7 +67,6 @@ const ProductDetails = ({ user, token }) => {
             <Link to="/login" className="btn btn-outline">Log In</Link>
           </div>
         )}
-
         <div className="review-list">
           {product.reviews && product.reviews.length > 0 ? (
             [...product.reviews].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(review => (
@@ -103,5 +91,4 @@ const ProductDetails = ({ user, token }) => {
     </div>
   );
 };
-
 export default ProductDetails;

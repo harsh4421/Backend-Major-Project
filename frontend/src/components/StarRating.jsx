@@ -1,5 +1,4 @@
 import { Star } from 'lucide-react';
-
 const StarRating = ({ rating, setRating, interactive = false }) => {
   return (
     <div className="star-rating">
@@ -16,5 +15,4 @@ const StarRating = ({ rating, setRating, interactive = false }) => {
     </div>
   );
 };
-
 export default StarRating;

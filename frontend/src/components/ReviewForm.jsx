@@ -1,26 +1,22 @@
 import { useState } from 'react';
 import axios from 'axios';
 import StarRating from './StarRating';
-
 const ReviewForm = ({ productId, token, onReviewAdded }) => {
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
   const [rating, setRating] = useState(5);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
-
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/products/${productId}/reviews`,
         { title, text, rating },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      
       setTitle('');
       setText('');
       setRating(5);
@@ -31,7 +27,6 @@ const ReviewForm = ({ productId, token, onReviewAdded }) => {
       setLoading(false);
     }
   };
-
   return (
     <div className="panel" style={{ padding: '2rem', marginBottom: '2.5rem' }}>
       <h4 style={{ marginBottom: '1.2rem', fontSize: '1.1rem' }}>Write a Review</h4>
@@ -70,5 +65,4 @@ const ReviewForm = ({ productId, token, onReviewAdded }) => {
     </div>
   );
 };
-
 export default ReviewForm;
