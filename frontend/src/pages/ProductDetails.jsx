@@ -3,7 +3,6 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import StarRating from '../components/StarRating';
 import ReviewForm from '../components/ReviewForm';
-import { Package } from 'lucide-react';
 
 const ProductDetails = ({ user, token }) => {
   const { id } = useParams();
@@ -41,8 +40,8 @@ const ProductDetails = ({ user, token }) => {
       </Link>
       
       <div className="panel" style={{ padding: '3rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'start', border: 'none', boxShadow: 'none', background: 'transparent' }}>
-        <div style={{ width: '100%', height: '400px', backgroundColor: '#f1f5f9', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Package size={80} color="#94a3b8" strokeWidth={1} />
+        <div style={{ width: '100%', height: '400px', backgroundColor: '#f1f5f9', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+          <img src={product.imageUrl} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
         
         <div style={{ paddingTop: '1rem' }}>
@@ -54,7 +53,7 @@ const ProductDetails = ({ user, token }) => {
               {' '}({product.reviews ? product.reviews.length : 0} reviews)
             </span>
           </div>
-          <h2 style={{ marginBottom: '1.5rem', fontSize: '2rem', fontWeight: '600' }}>${product.price.toFixed(2)}</h2>
+          <h2 style={{ marginBottom: '1.5rem', fontSize: '2rem', fontWeight: '600' }}>₹{product.price.toLocaleString('en-IN')}</h2>
           <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-muted)', marginBottom: '2rem' }}>{product.description}</p>
           <button className="btn btn-primary" style={{ width: '100%', padding: '0.8rem' }}>
             Add to Cart

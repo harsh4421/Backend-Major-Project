@@ -13,6 +13,10 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Please add a price']
   },
+  imageUrl: {
+    type: String,
+    default: 'https://via.placeholder.com/500'
+  },
   averageRating: {
     type: Number,
     min: [1, 'Rating must be at least 1'],
