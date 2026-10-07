@@ -59,7 +59,7 @@ const products = [
     name: 'Logitech MX Master 4S',
     description: 'The iconic mouse, remastered. Features an 8K DPI sensor, zero-latency wireless connectivity, and silent tactile clicks.',
     price: 10995,
-    imageUrl: 'https://images.unsplash.com/photo-1527814050087-379381547330?auto=format&fit=crop&w=800&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'LG C6 65-inch OLED 4K TV',
@@ -89,7 +89,7 @@ const products = [
     name: 'Apple Vision Pro 2',
     description: 'The era of spatial computing is here. Blends digital content seamlessly with your physical space using eye and hand tracking.',
     price: 349900,
-    imageUrl: 'https://images.unsplash.com/photo-1707011033055-67eb1c52b575?auto=format&fit=crop&w=800&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'DJI Mavic 4 Pro',
