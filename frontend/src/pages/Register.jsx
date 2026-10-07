@@ -23,9 +23,9 @@ const Register = ({ setToken }) => {
   };
 
   return (
-    <div className="auth-container glass-panel animate-fade-in">
-      <h2 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Create Account</h2>
-      {error && <div style={{ color: 'var(--danger)', marginBottom: '1rem', textAlign: 'center' }}>{error}</div>}
+    <div className="auth-container">
+      <h2 style={{ marginBottom: '1.5rem', textAlign: 'center', fontSize: '1.5rem' }}>Create Account</h2>
+      {error && <div style={{ color: 'var(--danger)', marginBottom: '1rem', textAlign: 'center', fontSize: '0.9rem', backgroundColor: '#fef2f2', padding: '0.5rem', borderRadius: '4px' }}>{error}</div>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="form-label">Full Name</label>
@@ -59,11 +59,11 @@ const Register = ({ setToken }) => {
           />
         </div>
         <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem' }}>
-          Sign Up
+          Create Account
         </button>
       </form>
-      <p style={{ marginTop: '1.5rem', textAlign: 'center' }}>
-        Already have an account? <Link to="/login" style={{ color: 'var(--primary)', textDecoration: 'none' }}>Login</Link>
+      <p style={{ marginTop: '1.5rem', textAlign: 'center', fontSize: '0.9rem' }}>
+        Already have an account? <Link to="/login" style={{ color: '#000', fontWeight: '500', textDecoration: 'underline' }}>Sign in</Link>
       </p>
     </div>
   );

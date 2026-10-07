@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import StarRating from '../components/StarRating';
+import { Package } from 'lucide-react';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -21,31 +22,31 @@ const ProductList = () => {
     fetchProducts();
   }, []);
 
-  if (loading) return <div style={{ textAlign: 'center', marginTop: '3rem' }}>Loading products...</div>;
+  if (loading) return <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)' }}>Loading products...</div>;
 
   return (
-    <div className="animate-fade-in">
+    <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h2>All Products</h2>
       </div>
       <div className="product-grid">
         {products.map((product) => (
           <Link to={`/products/${product._id}`} key={product._id} style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div className="product-card glass-panel">
-              <div style={{ height: '200px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '8px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                 <span style={{ fontSize: '3rem', color: 'var(--text-muted)' }}>📦</span>
+            <div className="product-card">
+              <div style={{ height: '180px', backgroundColor: '#f1f5f9', borderRadius: '4px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                 <Package size={48} color="#94a3b8" strokeWidth={1} />
               </div>
-              <h3 style={{ marginBottom: '0.5rem' }}>{product.name}</h3>
-              <p style={{ flex: 1, marginBottom: '1rem', fontSize: '0.9rem' }}>
+              <h3 style={{ marginBottom: '0.4rem', fontSize: '1.1rem' }}>{product.name}</h3>
+              <p style={{ flex: 1, marginBottom: '1rem', fontSize: '0.85rem' }}>
                 {product.description.substring(0, 80)}...
               </p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
-                <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: 'white' }}>
+                <span style={{ fontSize: '1.1rem', fontWeight: '600' }}>
                   ${product.price.toFixed(2)}
                 </span>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <StarRating rating={product.averageRating || 0} />
-                  <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
                     ({product.reviews ? product.reviews.length : 0})
                   </span>
                 </div>

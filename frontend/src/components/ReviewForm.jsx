@@ -33,12 +33,12 @@ const ReviewForm = ({ productId, token, onReviewAdded }) => {
   };
 
   return (
-    <div className="glass-panel" style={{ padding: '2rem', marginTop: '2rem' }}>
-      <h3 style={{ marginBottom: '1.5rem' }}>Write a Review</h3>
-      {error && <div style={{ color: 'var(--danger)', marginBottom: '1rem' }}>{error}</div>}
+    <div className="panel" style={{ padding: '2rem', marginBottom: '2.5rem' }}>
+      <h4 style={{ marginBottom: '1.2rem', fontSize: '1.1rem' }}>Write a Review</h4>
+      {error && <div style={{ color: 'var(--danger)', marginBottom: '1rem', fontSize: '0.9rem' }}>{error}</div>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label className="form-label">Rating</label>
+          <label className="form-label" style={{ marginBottom: '0.5rem' }}>Rating</label>
           <StarRating rating={rating} setRating={setRating} interactive={true} />
         </div>
         <div className="form-group">
