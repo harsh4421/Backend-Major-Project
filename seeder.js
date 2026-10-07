@@ -6,9 +6,6 @@ const connectDB = require('./config/db');
 // Load env vars
 dotenv.config();
 
-// Connect to DB
-connectDB();
-
 const products = [
   {
     name: 'Sony WH-1000XM5 Wireless Headphones',
@@ -23,10 +20,16 @@ const products = [
     imageUrl: 'https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=800&q=80'
   },
   {
-    name: 'Dell UltraSharp 27 4K USB-C Hub Monitor',
-    description: 'Experience true color reproduction on this brilliant 27-inch 4K monitor with a wide color coverage.',
-    price: 45000,
-    imageUrl: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80'
+    name: 'Apple iPhone 15 Pro Max',
+    description: 'Forged in titanium and featuring the groundbreaking A17 Pro chip, a customizable Action button, and the most powerful iPhone camera system ever.',
+    price: 159900,
+    imageUrl: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    name: 'PlayStation 5 Console',
+    description: 'Experience lightning fast loading with an ultra-high speed SSD, deeper immersion with support for haptic feedback, adaptive triggers, and 3D Audio.',
+    price: 54990,
+    imageUrl: 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Apple Watch Series 9',
@@ -38,19 +41,26 @@ const products = [
     name: 'Logitech MX Master 3S',
     description: 'The iconic mouse, remastered. Feel every moment of your workflow with even more precision, tactility, and performance.',
     price: 9495,
-    imageUrl: 'https://images.unsplash.com/photo-1615663245857-ac1eeb536fcb?auto=format&fit=crop&w=800&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1527814050087-379381547330?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Nintendo Switch OLED Model',
     description: 'Play at home on the TV or on-the-go with a vibrant 7-inch OLED screen with the Nintendo Switch system.',
     price: 32999,
     imageUrl: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    name: 'MacBook Pro 14-inch M3',
+    description: 'Supercharged by M3, the 14-inch MacBook Pro delivers incredible performance and up to 22 hours of battery life.',
+    price: 169900,
+    imageUrl: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80'
   }
 ];
 
 // Import data
 const importData = async () => {
   try {
+    await connectDB();
     await Product.deleteMany();
     console.log('Old products cleared.');
     
